@@ -2,6 +2,8 @@ package org.aaroca.modelojpa2.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.aaroca.modelojpa2.auxiliar.periodo;
+
 import java.util.Date;
 
 @Entity
@@ -14,6 +16,10 @@ public class proyectoEmpleado {
     @ManyToOne
     @JoinColumn(name = "idProyecto", nullable = false)
     private proyecto proyecto;
+
+    @Embedded
+    private periodo Periodo;
+
 
     @ManyToOne
     @JoinColumn(name = "idEmpleado", nullable = false)

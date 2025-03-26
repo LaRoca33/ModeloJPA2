@@ -17,7 +17,7 @@ public class cargaDatos implements CommandLineRunner {
     private final proyectoRepository ProyectoRepository;
     private final proyectoEmpleadoRepository ProyectoEmpleadoRepository;
 
-    public DataLoader(empleadoRepository EmpleadoRepository, proyectoRepository ProyectoRepository, proyectoEmpleadoRepository ProyectoEmpleadoRepository) {
+    public cargaDatos(empleadoRepository EmpleadoRepository, proyectoRepository ProyectoRepository, proyectoEmpleadoRepository ProyectoEmpleadoRepository) {
         this.EmpleadoRepository = EmpleadoRepository;
         this.ProyectoRepository = ProyectoRepository;
         this.ProyectoEmpleadoRepository = ProyectoEmpleadoRepository;
@@ -27,25 +27,20 @@ public class cargaDatos implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Crear un Proyecto
         proyecto Proyecto = new proyecto();
-        proyecto.setNombre("Sistema de Inventario");
-        proyectoRepository.save(Proyecto);
+        Proyecto.setNombre("Sistema de Inventario");
+        ProyectoRepository.save(Proyecto);
 
         // Crear un Empleado
         empleado Empleado = new empleado();
-        empleado.setNombre("María Gómez");
-        empleado.setSalario(48000);
-        empleadoRepository.save(Empleado);
+        Empleado.setNombre("María Gómez");
+        EmpleadoRepository.save(Empleado);
 
         // Crear un ProyectoEmpleado con un período
         proyectoEmpleado pe = new proyectoEmpleado();
-        pe.setProyecto(proyecto);
-        pe.setEmpleado(empleado);
+        pe.setProyecto(Proyecto);
+        pe.setEmpleado(Empleado);
 
-        periodo Periodo = new periodo();
-        periodo.setFechaInicio(LocalDate.of(2024, 1, 1));
-        periodo.setFechaFin(LocalDate.of(2024, 6, 30));
-        pe.setPeriodo(Periodo);
 
-        proyectoEmpleadoRepository.save(pe);
+        ProyectoEmpleadoRepository.save(pe);
     }
 }
