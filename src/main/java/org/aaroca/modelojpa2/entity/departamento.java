@@ -1,25 +1,20 @@
 package org.aaroca.modelojpa2.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
 @Entity
 @Getter @Setter
-public class cursoFormacion {
+public class departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCurso;
-    @ManyToOne
-    @JoinColumn(name = "idJefe")
-    private empleado jefe;
-
-    @OneToMany(mappedBy = "jefe")
-    private List<empleado> subordinados;
+    private Long idDepartamento;
 
     private String nombre;
-    private int horas;
+    private double presupuesto;
 
-    @ManyToMany(mappedBy = "cursos")
+    @OneToMany(mappedBy = "departamento")
     private List<empleado> empleados;
 }
 

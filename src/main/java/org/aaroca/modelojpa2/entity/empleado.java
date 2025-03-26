@@ -8,24 +8,21 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class Empleado extends persona {
+public class empleado extends persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpleado;
 
-    private String estadoEmpleado;
-    private String categoria;
-    private double salario;
 
     @Embedded
     private direccion Direccion;
 
     @ManyToOne
     @JoinColumn(name = "idDepartamento", nullable = false)
-    private Departamento departamento;
+    private departamento departamento;
 
     @OneToMany(mappedBy = "empleado")
-    private List<Nomina> nominas;
+    private List<nomina> nominas;
 
     @OneToMany(mappedBy = "idPuesto")
     private List<puesto> puestos;

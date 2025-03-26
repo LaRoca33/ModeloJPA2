@@ -2,23 +2,23 @@ package org.aaroca.modelojpa2.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Getter @Setter
-public class nomina {
+public class proyectoEmpleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idNomina;
+    private Long id;
 
-    private int mes;
-    private int anio;
+    @ManyToOne
+    @JoinColumn(name = "idProyecto", nullable = false)
+    private proyecto proyecto;
 
     @ManyToOne
     @JoinColumn(name = "idEmpleado", nullable = false)
     private empleado empleado;
 
-    @OneToMany(mappedBy = "nomina")
-    private List<lineaNomina> lineasNomina;
+    private Date fechaInicio;
 }
 
